@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="w-100" *ngIf="!data">
+        <p class="bold f-16 mb-20 dark-grey">Your Credit Card was declined
+          <br>Please contact your bank or try another payment method</p>
+        <img src="assets/screen2.png" alt="">
+        <div class="text-center">
+          <button (click)="dialogRef.close()" class="f-18 mt-20 btn btn-default">OK</button>
+        </div>
+      </div>
+      <div class="w-100 success text-center" *ngIf="data">
+        <i class="material-icons" style="color:#4caf50">done</i>
+        <p class="bold f-16 mb-20 mt-20 dark-grey">Success</p>
+      </div>
+    </div>
+  </div>
+</div>

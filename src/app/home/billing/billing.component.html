@@ -1,0 +1,163 @@
+<div class="container-fluid bg-grey">
+  <div class="row">
+    <div class="container mobile">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-xs-12">
+          <div class="row">
+            <div class="billing-wrap">
+              <div [style.height.px]="height" class="col-sm-4 left-wrap col-xs-12">
+                <div class="work-wrap">
+                  <span class="work bold">Work Comp Wizard</span>
+                </div>
+                <div class="w-100">
+                  <div class="process-wrap">
+                    <ul class="list-inline">
+                      <li>
+                        <span></span>
+                      </li>
+                      <li>
+                        <span></span>
+                      </li>
+                      <li>
+                        <span class="circle"></span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="w-100">
+                  <p class="text-center bold f-18 mt-20 mb-20 dark-grey">Enter credit card info</p>
+                  <img src="assets/screen1.png" alt="" class="img-responsive">
+                  <p class="med f-15 mt-40 dark-grey">
+                    We don't charge your credit card until after the 3-day trial period expires.
+                  </p>
+                  <p class="med f-15 mt-20 dark-grey">
+                    Zero commitment - you can cancel at any time.
+                  </p>
+                </div>
+                <a class="previous semi">
+                  <i class="material-icons">keyboard_backspace</i>Previous step</a>
+              </div>
+              <div class="col-sm-8 right-wrap col-xs-12" #rightBlock>
+                <p class="bold f-18 mt-20 dark-grey">Billing info</p>
+                <form class="billing-form" [formGroup]="form" (ngSubmit)="submitForm()">
+                  <div class="form-group">
+                    <span class="name">name on card</span>
+                    <i class="material-icons" style="color:#4caf50" *ngIf="form.controls.cardName.valid">done</i>
+                    <input [class.error]="validateForm('cardName')" class="form-control" type="text" formControlName="cardName" (focus)="focused($event)"
+                      (focusout)="noFocus($event,'cardName')">
+                    <span class="error" *ngIf="validateForm('cardName')">You can't leave this empty (6 characters)</span>
+                  </div>
+                  <div class="form-group">
+                    <span class="name">credit card number</span>
+                    <i class="material-icons" style="color:#4caf50" *ngIf="form.controls.cardNumber.valid">done</i>
+                    <input [class.error]="validateForm('cardNumber')" maxlength="16" class="form-control" type="text" formControlName="cardNumber"
+                      (focus)="focused($event)" (focusout)="noFocus($event,'cardNumber')">
+                    <span class="error" *ngIf="validateForm('cardNumber')">You can't leave this empty (16 digit)</span>
+                  </div>
+                  <div class="form-group w-30">
+                    <span class="name">cvv</span>
+                    <input [class.error]="validateForm('cvv')" maxlength="3" class="form-control" type="text" formControlName="cvv" (focus)="focused($event)"
+                      (focusout)="noFocus($event,'cvv')">
+                    <span class="error" *ngIf="validateForm('cvv')">Please enter CVV (3 digit)</span>
+                  </div>
+                  <div class="form-group w-30">
+                    <span class="name">exp month</span>
+                    <i class="material-icons">keyboard_arrow_down</i>
+                    <select [class.error]="validateForm('expMonth')" class="form-control" formControlName="expMonth" (focus)="focused($event)"
+                      (focusout)="noFocus($event,'expMonth')">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    <span class="error" *ngIf="validateForm('expMonth')">Please select a month</span>
+                  </div>
+                  <div class="form-group w-30">
+                    <span class="name">exp year</span>
+                    <i class="material-icons">keyboard_arrow_down</i>
+                    <select [class.error]="validateForm('expYear')" class="form-control" formControlName="expYear" (focus)="focused($event)"
+                      (focusout)="noFocus($event,'expYear')">
+                      <option>2018</option>
+                      <option>2019</option>
+                      <option>2020</option>
+                      <option>2021</option>
+                      <option>2022</option>
+                    </select>
+                    <span class="error" *ngIf="validateForm('expYear')">Please select a year</span>
+                  </div>
+                  <div class="form-group">
+                    <span class="name">Address</span>
+                    <input [class.error]="validateForm('address')" type="text" class="form-control" formControlName="address" (focus)="focused($event)"
+                      (focusout)="noFocus($event,'address')">
+                    <span class="error" *ngIf="validateForm('address')">Please enter address</span>
+                  </div>
+                  <div class="form-group w-20">
+                    <span class="name">apt/suite</span>
+                    <input [class.error]="validateForm('apt')" class="form-control" type="text" formControlName="apt" (focus)="focused($event)"
+                      (focusout)="noFocus($event,'apt')">
+                    <span class="error" *ngIf="validateForm('apt')">Please enter apt/suite</span>
+                  </div>
+                  <div class="form-group w-20">
+                    <span class="name">city</span>
+                    <input [class.error]="validateForm('city')" class="form-control" type="text" formControlName="city" (focus)="focused($event)"
+                      (focusout)="noFocus($event,'city')">
+                    <span class="error" *ngIf="validateForm('city')">Please enter city</span>
+                  </div>
+                  <div class="full-width">
+                    <div class="form-group w-20">
+                      <span class="name">select state</span>
+                      <i class="material-icons">keyboard_arrow_down</i>
+                      <select [class.error]="validateForm('state')" class="form-control" formControlName="state" (focus)="focused($event)" (focusout)="noFocus($event,'state')">
+                        <option value="1">Kerala</option>
+                        <option value="2">Karnataka</option>
+                      </select>
+                      <span class="error" *ngIf="validateForm('state')">Please select state</span>
+                    </div>
+                    <div class="form-group w-20">
+                      <span class="name">zip/postal</span>
+                      <input [class.error]="validateForm('zip')" class="form-control" type="text" formControlName="zip" (focus)="focused($event)"
+                        (focusout)="noFocus($event,'zip')">
+                      <span class="error" *ngIf="validateForm('zip')">Please enter zip/postal</span>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <span class="name">country</span>
+                    <i class="material-icons">keyboard_arrow_down</i>
+                    <select [class.error]="validateForm('country')" class="form-control" formControlName="country" (focus)="focused($event)"
+                      (focusout)="noFocus($event,'country')">
+                      <option>India</option>
+                      <option>china</option>
+                      <option>australia</option>
+                    </select>
+                    <span class="error" *ngIf="validateForm('country')">Please select country</span>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12 text-right">
+                      <button [disabled]="form.touched && form.invalid" type="submit" class="btn btn-default f-18 semi mb-20">Start Free Trial</button>
+                      <p class="dark-grey mb-20">Need help? Chat with us below,
+                        <a href="">shoot us an email</a>, or Call 646-847-7711</p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="chat">
+  <div class="head">
+    <p>
+      <span>
+        Daisy bill is here to help
+      </span>
+      <i class="material-icons">keyboard_arrow_down</i>
+    </p>
+  </div>
+</div>
